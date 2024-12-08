@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import json
+
+def carregar_configuracao():
+    with open("./config.json", 'r') as arquivo:
+        return json.load(arquivo)
+
+secret_key = carregar_configuracao()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fgh4sa7&8!dx#gci5n&5zc_ai*!h9war-60eg05ml(#6-bsfx1'
+SECRET_KEY = secret_key['secret']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
