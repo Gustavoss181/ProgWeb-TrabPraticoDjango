@@ -18,8 +18,7 @@ class Pedido(models.Model):
         self.valor_total = total
         self.save()
 
-# Item do Pedido (Tabela Associativa)
-class ItemPedido(models.Model):
+class PedidoProduto(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="itens_pedido")
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name="itens")
     quantidade = models.PositiveIntegerField()
