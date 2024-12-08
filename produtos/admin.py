@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Guitarra, Violao, Baixo, Produto
+from .models import Produto, ProdutoInstrumento, InstrumentoCorda, InstrumentoSopro, InstrumentoPercussao
 
-# Register your models here.
 admin.site.register(Produto)
-admin.site.register(Guitarra)
-admin.site.register(Violao)
-admin.site.register(Baixo)
+admin.site.register(ProdutoInstrumento)
+admin.site.register(InstrumentoCorda)
+admin.site.register(InstrumentoSopro)
+admin.site.register(InstrumentoPercussao)

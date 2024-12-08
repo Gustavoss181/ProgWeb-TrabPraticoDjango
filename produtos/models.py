@@ -2,66 +2,124 @@ from django.db import models
 
 # Create your models here.
 class Produto(models.Model):
-    unique_id = models.AutoField(primary_key=True)
-    codigo = models.CharField(max_length=100, unique=True)  # Garantindo unicidade
-    quantidade = models.PositiveIntegerField()
-    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    codigo = models.CharField(max_length=20, unique=True)  # Código único do produto
+    quantidade = models.PositiveIntegerField(default=0)  # Quantidade em estoque
+    preco = models.DecimalField(max_digits=10, decimal_places=2)  # Preço do produto
 
     def __str__(self):
-        return self.codigo
+        return f"{self.codigo} - R${self.preco}"
 
-# Guitarra
-class Guitarra(models.Model):
-    unique_id = models.AutoField(primary_key=True)
-    produto = models.OneToOneField(Produto, on_delete=models.CASCADE, related_name="guitarra")
-    modelo = models.CharField(max_length=100)
-    serie = models.CharField(max_length=100, unique=True)  # Garantindo unicidade
-    numero_trastes = models.PositiveIntegerField()
-    numero_cordas = models.PositiveIntegerField()
-    captadores = models.CharField(max_length=100)
-    cor = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.modelo
-
-# Violão
-class Violao(models.Model):
-    TIPOS_CORDA = [
-        ('nylon', 'Nylon'),
-        ('aco', 'Aço'),
+class InstrumentoCorda(models.Model):
+    TIPO_INSTRUMENTO_CHOICES = [
+        ('guitarra', 'Guitarra'),
+        ('violao', 'Violão'),
+        ('baixo', 'Baixo'),
     ]
 
-    TIPOS_CORPO = [
-        ('classico', 'Clássico'),
-        ('folk', 'Folk'),
-        ('jumbo', 'Jumbo'),
-        ('flat', 'Flat'),
-        ('outros', 'Outros'),
+    modelo = models.CharField(max_length=100)
+    serie = models.CharField(max_length=50, blank=True, null=True)
+    numero_trastes = models.PositiveIntegerField()
+    numero_cordas = models.PositiveIntegerField()
+    captadores = models.CharField(max_length=100, blank=True, null=True)
+    tipo_corpo = models.CharField(
+        max_length=50,
+        choices=[
+            ('classico', 'Clássico'),
+            ('folk', 'Folk'),
+            ('jumbo', 'Jumbo'),
+            ('flat', 'Flat'),
+            ('outros', 'Outros'),
+        ],
+        blank=True,
+        null=True
+    )
+    cor = models.CharField(max_length=30)
+    tipo_instrumento = models.CharField(max_length=50, choices=TIPO_INSTRUMENTO_CHOICES)
+
+    def __str__(self):
+        return f"{self.tipo_instrumento} - {self.modelo}"
+
+class InstrumentoSopro(models.Model):
+    TIPO_INSTRUMENTO_CHOICES = [
+        ('flauta', 'Flauta'),
+        ('clarinete', 'Clarinete'),
+        ('saxofone', 'Saxofone'),
+        ('trompete', 'Trompete'),
+        ('trombone', 'Trombone'),
+        ('oboé', 'Oboé'),
+    ]
+    ALCANCE_CHOICES = [
+        ('baixo', 'Baixo'),
+        ('alto', 'Alto'),
+        ('tenor', 'Tenor'),
     ]
 
-    unique_id = models.AutoField(primary_key=True)
-    produto = models.OneToOneField(Produto, on_delete=models.CASCADE, related_name="violao")
-    modelo = models.CharField(max_length=100)
-    serie = models.CharField(max_length=100, unique=True)  # Garantindo unicidade
-    numero_trastes = models.PositiveIntegerField()
-    numero_cordas = models.PositiveIntegerField()
-    tipo_corpo = models.CharField(max_length=10, choices=TIPOS_CORPO)
-    tipo_corda = models.CharField(max_length=10, choices=TIPOS_CORDA)
-    cor = models.CharField(max_length=50)
+    MATERIAL_CHOICES = [
+        ('metal', 'Metal'),
+        ('madeira', 'Madeira'),
+    ]
+
+    material = models.CharField(max_length=50, choices=MATERIAL_CHOICES)
+    alcance = models.CharField(max_length=50, choices=ALCANCE_CHOICES)
+    tipo_bocal = models.CharField(max_length=50)
+    quantidade_valvulas = models.PositiveIntegerField()
+    afinacao = models.CharField(max_length=50)
+    tipo_instrumento = models.CharField(max_length=50, choices=TIPO_INSTRUMENTO_CHOICES)
 
     def __str__(self):
-        return self.modelo
+        return f"{self.tipo_instrumento} - {self.material} ({self.alcance})"
 
-# Baixo
-class Baixo(models.Model):
-    unique_id = models.AutoField(primary_key=True)
-    produto = models.OneToOneField(Produto, on_delete=models.CASCADE, related_name="baixo")
-    modelo = models.CharField(max_length=100)
-    serie = models.CharField(max_length=100, unique=True)  # Garantindo unicidade
-    numero_trastes = models.PositiveIntegerField()
-    numero_cordas = models.PositiveIntegerField()
-    captadores = models.CharField(max_length=100)
-    cor = models.CharField(max_length=50)
+class InstrumentoPercussao(models.Model):
+    TIPO_INSTRUMENTO_CHOICES = [
+        ('tambor', 'Tambor'),
+        ('timbal', 'Timbal'),
+        ('xilofone', 'Xilofone'),
+        ('maracas', 'Maracas'),
+        ('triangulo', 'Triângulo'),
+        ('caixa', 'Caixa'),
+    ]
+    MATERIAL_CHOICES = [
+        ('madeira', 'Madeira'),
+        ('metal', 'Metal'),
+        ('sintetico', 'Sintético'),
+    ]
+
+    material = models.CharField(max_length=50, choices=MATERIAL_CHOICES)
+    altura = models.PositiveIntegerField()
+    tipo_percussao = models.CharField(max_length=50)  # Ex.: Tímpano, Caixa, etc.
+    diametro = models.PositiveIntegerField()
+    altura_casca = models.PositiveIntegerField()
+    tipo_instrumento = models.CharField(max_length=50, choices=TIPO_INSTRUMENTO_CHOICES)
 
     def __str__(self):
-        return self.modelo
+        return f"{self.tipo_instrumento} - {self.material} ({self.altura}cm)"
+    
+
+class ProdutoInstrumento(models.Model):
+    produto = models.OneToOneField(Produto, on_delete=models.CASCADE, related_name="produto_instrumento")
+    instrumento_corda = models.OneToOneField(
+        InstrumentoCorda, on_delete=models.SET_NULL, null=True, blank=True, related_name="produto_corda"
+    )
+    instrumento_sopro = models.OneToOneField(
+        InstrumentoSopro, on_delete=models.SET_NULL, null=True, blank=True, related_name="produto_sopro"
+    )
+    instrumento_percussao = models.OneToOneField(
+        InstrumentoPercussao, on_delete=models.SET_NULL, null=True, blank=True, related_name="produto_percussao"
+    )
+
+    def save(self, *args, **kwargs):
+        # Garante que apenas um tipo de instrumento está relacionado
+        instrumentos = [self.instrumento_corda, self.instrumento_sopro, self.instrumento_percussao]
+        if sum(1 for instrumento in instrumentos if instrumento is not None) > 1:
+            raise ValueError("Um produto pode estar associado a apenas um tipo de instrumento!")
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        tipo = "Indefinido"
+        if self.instrumento_corda:
+            tipo = "Corda"
+        elif self.instrumento_sopro:
+            tipo = "Sopro"
+        elif self.instrumento_percussao:
+            tipo = "Percussão"
+        return f"{self.produto.codigo} - Tipo: {tipo}"
