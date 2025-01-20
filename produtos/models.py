@@ -6,6 +6,17 @@ class Produto(models.Model):
     quantidade = models.PositiveIntegerField(default=0)  # Quantidade em estoque
     preco = models.DecimalField(max_digits=10, decimal_places=2)  # Preço do produto
 
+    def get_nome(self):
+        if hasattr(self, 'produto_instrumento'):
+            instrumento = self.produto_instrumento
+            if instrumento.instrumento_corda:
+                return str(instrumento.instrumento_corda)
+            elif instrumento.instrumento_sopro:
+                return str(instrumento.instrumento_sopro)
+            elif instrumento.instrumento_percussao:
+                return str(instrumento.instrumento_percussao)
+        return "Sem nome"
+
     def __str__(self):
         return f"{self.codigo} - R${self.preco}"
 
