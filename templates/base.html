@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h3"><a href="/" class="text-white text-decoration-none">🎵 Loja de Instrumentos</a></h1>
+            <form class="d-flex" method="get" action="">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Buscar</button>
+            </form>
+            <a href="/admin/" class="btn btn-light">Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
