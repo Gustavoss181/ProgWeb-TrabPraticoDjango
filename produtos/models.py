@@ -5,6 +5,8 @@ class Produto(models.Model):
     codigo = models.CharField(max_length=20, unique=True)  # Código único do produto
     quantidade = models.PositiveIntegerField(default=0)  # Quantidade em estoque
     preco = models.DecimalField(max_digits=10, decimal_places=2)  # Preço do produto
+    # foto = models.ImageField(upload_to='produtos/', blank=True, null=True)
+    foto = models.URLField(blank=True, null=True)
 
     def get_nome(self):
         if hasattr(self, 'produto_instrumento'):
