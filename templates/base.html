@@ -11,8 +11,14 @@
     <header class="bg-dark text-white py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="h3"><a href="/" class="text-white text-decoration-none">🎵 Loja de Instrumentos</a></h1>
-            <form class="d-flex" method="get" action="">
-                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+            <form class="d-flex" method="get" action="{% url 'loja:home' %}">
+                <input
+                    class="form-control me-2"
+                    type="search"
+                    name="q"
+                    placeholder="Buscar produtos..."
+                    value="{{ query|default:'' }}"
+                    aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Buscar</button>
             </form>
             <a href="/admin/" class="btn btn-light">Login</a>

@@ -4,17 +4,21 @@
 
 {% block content %}
 <div class="row">
-    {% for produto in produtos %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" class="card-img-top" alt="{{ produto.nome }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ produto.get_nome }}</h5>
-                <p class="card-text">Preço: R$ {{ produto.preco }}</p>
-                <a href="{% url 'produto_detalhe' produto.id %}" class="btn btn-primary">Ver mais</a>
+    {% if produtos %}
+        {% for produto in produtos %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" class="card-img-top" alt="{{ produto.nome }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ produto.get_nome }}</h5>
+                    <p class="card-text">Preço: R$ {{ produto.preco }}</p>
+                    <a href="{% url 'produto_detalhe' produto.id %}" class="btn btn-primary">Ver mais</a>
+                </div>
             </div>
         </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p class="text-muted text-center">Nenhum produto encontrado.</p>
+    {% endif %}
 </div>
 {% endblock %}
