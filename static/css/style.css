@@ -1,0 +1,25 @@
+/* Ajustes para o dropdown */
+.custom-dropdown-menu {
+    border-radius: 0; /* Remove a borda arredondada */
+    padding: 0; /* Remove o padding interno */
+    min-width: auto; /* Remove o tamanho fixo padrão */
+    width: 100%; /* Faz a largura ser igual à do botão */
+    font-size: 14px; /* Ajusta o tamanho da fonte */
+}
+
+/* Ajusta a altura da lista para evitar clipping */
+.custom-dropdown-menu > li > a {
+    padding: 8px 16px; /* Reduz o padding vertical */
+    line-height: 1.5; /* Melhora a legibilidade */
+}
+
+/* Corrige o tamanho para botões alinhados à barra */
+.dropdown-toggle {
+    height: 38px; /* Ajusta a altura */
+    line-height: 38px; /* Centraliza o texto verticalmente */
+}
+
+/* Corrige posicionamento se estiver clipando na navbar */
+.dropdown-menu {
+    margin-top: 0; /* Ajusta margem superior */
+}
