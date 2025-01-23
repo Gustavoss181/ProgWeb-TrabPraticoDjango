@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,9 +38,9 @@
 					<a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownCorda" data-bs-toggle="dropdown" aria-expanded="false">
 						Instrumentos de Corda
 					</a>
-					<ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="dropdownCorda">
+					<ul class="dropdown-menu  rounded-0" aria-labelledby="dropdownCorda">
 						{% for tipo in tipos_corda %}
-							<li><a class="dropdown-item" href="{% url 'loja:home' %}?tipo={{ tipo }}">{{ tipo }}</a></li>
+							<li><a class="dropdown-item rounded-0" href="{% url 'loja:home' %}?tipo={{ tipo }}">{{ tipo }}</a></li>
 						{% endfor %}
 					</ul>
 				</div>
@@ -49,9 +50,9 @@
 					<a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownSopro" data-bs-toggle="dropdown" aria-expanded="false">
 						Instrumentos de Sopro
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownSopro">
+					<ul class="dropdown-menu  rounded-0" aria-labelledby="dropdownSopro">
 						{% for tipo in tipos_sopro %}
-							<li><a class="dropdown-item" href="{% url 'loja:home' %}?tipo={{ tipo }}">{{ tipo }}</a></li>
+							<li><a class="dropdown-item rounded-0" href="{% url 'loja:home' %}?tipo={{ tipo }}">{{ tipo }}</a></li>
 						{% endfor %}
 					</ul>
 				</div>
@@ -61,9 +62,9 @@
 					<a class="nav-link text-white dropdown-toggle" href="#" role="button" id="dropdownPercussao" data-bs-toggle="dropdown" aria-expanded="false">
 						Instrumentos de Percussão
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownPercussao">
+					<ul class="dropdown-menu  rounded-0" aria-labelledby="dropdownPercussao">
 						{% for tipo in tipos_percussao %}
-							<li><a class="dropdown-item" href="{% url 'loja:home' %}?tipo={{ tipo }}">{{ tipo }}</a></li>
+							<li><a class="dropdown-item rounded-0" href="{% url 'loja:home' %}?tipo={{ tipo }}">{{ tipo }}</a></li>
 						{% endfor %}
 					</ul>
 				</div>
