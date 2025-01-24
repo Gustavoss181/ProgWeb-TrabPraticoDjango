@@ -90,6 +90,7 @@ class InstrumentoPercussao(models.Model):
         ('maracas', 'Maracas'),
         ('triangulo', 'Triângulo'),
         ('caixa', 'Caixa'),
+        ('bateria', 'Bateria'),
     ]
     MATERIAL_CHOICES = [
         ('madeira', 'Madeira'),
