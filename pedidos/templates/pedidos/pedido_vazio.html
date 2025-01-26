@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Pedido Vazio{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Pedido #{{ pedido.unique_id }}</h1>
+    <p>Este pedido não contém itens.</p>
+    <a href="{% url 'ver_carrinho' %}" class="btn btn-primary">Voltar ao Carrinho</a>
+</div>
+{% endblock %}

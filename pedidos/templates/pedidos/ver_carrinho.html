@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrinho de Compras{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Exibe mensagens de erro -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <h1>Carrinho de Compras</h1>
+
+    {% if itens_carrinho %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Preço Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in itens_carrinho %}
+            <tr>
+                <td>{{ item.produto.get_nome }}</td>
+                <td>{{ item.quantidade }}</td>
+                <td>R$ {{ item.produto.preco }}</td>
+                <td>R$ {{ item.preco_total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Total: R$ {{ valor_total }}</h3>
+
+    <!-- Botão para finalizar o pedido -->
+    <form method="post" action="{% url 'finalizar_pedido' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-lg">Finalizar Pedido</button>
+    </form>
+    {% else %}
+    <p>Seu carrinho está vazio.</p>
+    {% endif %}
+</div>
+{% endblock %}
