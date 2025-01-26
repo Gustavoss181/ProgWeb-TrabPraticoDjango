@@ -4,23 +4,6 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4 text-center">Bem-vindo à Loja de Instrumentos</h1>
-
-    <div class="row mb-4">
-        <div class="col">
-            <form method="get" class="d-flex">
-                <input type="text" name="q" class="form-control me-2" placeholder="Buscar instrumentos..." value="{{ query }}">
-                <select name="tipo" class="form-select me-2">
-                    <option value="">Todos os tipos</option>
-                    <option value="corda" {% if tipo == "corda" %}selected{% endif %}>Instrumentos de Corda</option>
-                    <option value="sopro" {% if tipo == "sopro" %}selected{% endif %}>Instrumentos de Sopro</option>
-                    <option value="percussao" {% if tipo == "percussao" %}selected{% endif %}>Instrumentos de Percussão</option>
-                </select>
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </form>
-        </div>
-    </div>
-
     <div class="row">
         {% if produtos %}
             {% for produto in produtos %}
