@@ -4,29 +4,13 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4 text-center">Bem-vindo à Loja de Instrumentos</h1>
+    <h1 class="mb-4 text-center display-4 fw-bold">Bem-vindo à Loja de Instrumentos</h1>
 
-    <div class="row mb-4">
-        <div class="col">
-            <form method="get" class="d-flex">
-                <input type="text" name="q" class="form-control me-2" placeholder="Buscar instrumentos..." value="{{ query }}">
-                <select name="tipo" class="form-select me-2">
-                    <option value="">Todos os tipos</option>
-                    <option value="corda" {% if tipo == "corda" %}selected{% endif %}>Instrumentos de Corda</option>
-                    <option value="sopro" {% if tipo == "sopro" %}selected{% endif %}>Instrumentos de Sopro</option>
-                    <option value="percussao" {% if tipo == "percussao" %}selected{% endif %}>Instrumentos de Percussão</option>
-                </select>
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
         {% if produtos %}
         {% for produto in produtos %}
         <div class="col">
-            <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden transition-transform"
-                style="transition: transform 0.3s;">
+            <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden">
                 <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" class="card-img-top img-fluid"
                     alt="{{ produto.get_nome }}" style="height: 200px; object-fit: cover;">
                 <div class="card-body d-flex flex-column">
@@ -46,12 +30,4 @@
         {% endif %}
     </div>
 </div>
-
-<!-- Efeito de hover nos cards -->
-<style>
-    .transition-transform:hover {
-        transform: translateY(-5px);
-        transition: transform 0.3s ease;
-    }
-</style>
 {% endblock %}
