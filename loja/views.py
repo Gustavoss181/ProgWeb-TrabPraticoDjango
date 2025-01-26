@@ -2,9 +2,9 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.db.models import Q
 from django.urls import reverse
-from produtos.models import Produto, InstrumentoCorda, InstrumentoSopro, InstrumentoPercussao
+from produtos.models import Produto
 
-# Create your views here.
+# View principal da home
 def home(request):
     query = request.GET.get('q', '')
     tipo = request.GET.get('tipo', '')
@@ -31,8 +31,10 @@ def home(request):
         'produtos': produtos,
         'query': query,
         'tipo': tipo,
+        'usuario_logado': request.user if request.user.is_authenticated else None,
     })
 
+# View para buscar produtos via Ajax
 def buscar_produtos(request):
     query = request.GET.get('q', '')  # Captura o termo da barra de pesquisa
     if query:

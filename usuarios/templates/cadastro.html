@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Usuário{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- Formulário de Cadastro -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Cadastro de Usuário</h2>
+                    <form method="post" action="{% url 'cadastro' %}">
+                        {% csrf_token %}
+                        <!-- Nome de Usuário -->
+                        <div class="form-group mb-3">
+                            <label for="username"><strong>Nome de Usuário:</strong></label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Digite seu nome de usuário" required>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            <label for="email"><strong>Email:</strong></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu email" required>
+                        </div>
+                        
+                        <!-- Senha -->
+                        <div class="form-group mb-3">
+                            <label for="password"><strong>Senha:</strong></label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required>
+                        </div>
+
+                        <!-- Botão de Cadastro -->
+                        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
