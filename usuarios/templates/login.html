@@ -1,91 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .text-center {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Login</h2>
-        <form method="post" action="{% url 'autenticar' %}">
-            {% csrf_token %}
-            <!-- Nome de Usuário -->
-            <div class="form-group">
-                <label for="username">Nome de Usuário:</label>
-                <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+{% extends 'base.html' %} <!-- Extende o template base -->
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Login</h2>
+                    <form method="post" action="{% url 'autenticar' %}">
+                        {% csrf_token %}
+                        <!-- Nome de Usuário -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nome de Usuário:</label>
+                            <input type="text" id="username" name="username" class="form-control"
+                                placeholder="Digite seu nome de usuário" required>
+                        </div>
+                        <!-- Senha -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha:</label>
+                            <input type="password" id="password" name="password" class="form-control"
+                                placeholder="Digite sua senha" required>
+                        </div>
+                        <!-- Botão de Login -->
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Entrar</button>
+                    </form>
+                    <!-- Link para cadastro -->
+                    <p class="text-center mt-3">
+                        Ainda não tem uma conta? <a href="{% url 'cadastro' %}" class="text-decoration-none">Cadastre-se
+                            aqui</a>
+                    </p>
+                </div>
             </div>
-            <!-- Senha -->
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-            </div>
-            <!-- Botão de Login -->
-            <button type="submit">Entrar</button>
-        </form>
-        <div class="text-center">
-            <p>Ainda não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se aqui</a></p>
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

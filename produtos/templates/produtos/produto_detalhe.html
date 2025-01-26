@@ -8,26 +8,36 @@
         <!-- Coluna Principal: Imagem e Especificações -->
         <div class="col-md-8">
             <div class="card mb-4">
-                <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" 
-                     class="card-img-top" 
-                     alt="{{ produto.get_nome }}">
+                <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" class="card-img-top"
+                    alt="{{ produto.get_nome }}">
                 <div class="card-body">
                     <h2 class="card-title">{{ produto.get_nome }}</h2>
                     <ul class="list-group list-group-flush">
                         {% if produto.produto_instrumento.instrumento_corda %}
-                            <li class="list-group-item"><strong>Modelo:</strong> {{ produto.produto_instrumento.instrumento_corda.modelo }}</li>
-                            <li class="list-group-item"><strong>Série:</strong> {{ produto.produto_instrumento.instrumento_corda.serie }}</li>
-                            <li class="list-group-item"><strong>Cor:</strong> {{ produto.produto_instrumento.instrumento_corda.cor }}</li>
-                            <li class="list-group-item"><strong>Número de Cordas:</strong> {{ produto.produto_instrumento.instrumento_corda.numero_cordas }}</li>
-                            <li class="list-group-item"><strong>Número de Trastes:</strong> {{ produto.produto_instrumento.instrumento_corda.numero_trastes }}</li>
+                        <li class="list-group-item"><strong>Modelo:</strong> {{
+                            produto.produto_instrumento.instrumento_corda.modelo }}</li>
+                        <li class="list-group-item"><strong>Série:</strong> {{
+                            produto.produto_instrumento.instrumento_corda.serie }}</li>
+                        <li class="list-group-item"><strong>Cor:</strong> {{
+                            produto.produto_instrumento.instrumento_corda.cor }}</li>
+                        <li class="list-group-item"><strong>Número de Cordas:</strong> {{
+                            produto.produto_instrumento.instrumento_corda.numero_cordas }}</li>
+                        <li class="list-group-item"><strong>Número de Trastes:</strong> {{
+                            produto.produto_instrumento.instrumento_corda.numero_trastes }}</li>
                         {% elif produto.produto_instrumento.instrumento_sopro %}
-                            <li class="list-group-item"><strong>Material:</strong> {{ produto.produto_instrumento.instrumento_sopro.material }}</li>
-                            <li class="list-group-item"><strong>Alcance:</strong> {{ produto.produto_instrumento.instrumento_sopro.alcance }}</li>
-                            <li class="list-group-item"><strong>Afinação:</strong> {{ produto.produto_instrumento.instrumento_sopro.afinacao }}</li>
+                        <li class="list-group-item"><strong>Material:</strong> {{
+                            produto.produto_instrumento.instrumento_sopro.material }}</li>
+                        <li class="list-group-item"><strong>Alcance:</strong> {{
+                            produto.produto_instrumento.instrumento_sopro.alcance }}</li>
+                        <li class="list-group-item"><strong>Afinação:</strong> {{
+                            produto.produto_instrumento.instrumento_sopro.afinacao }}</li>
                         {% elif produto.produto_instrumento.instrumento_percussao %}
-                            <li class="list-group-item"><strong>Material:</strong> {{ produto.produto_instrumento.instrumento_percussao.material }}</li>
-                            <li class="list-group-item"><strong>Altura:</strong> {{ produto.produto_instrumento.instrumento_percussao.altura }}</li>
-                            <li class="list-group-item"><strong>Diâmetro:</strong> {{ produto.produto_instrumento.instrumento_percussao.diametro }}</li>
+                        <li class="list-group-item"><strong>Material:</strong> {{
+                            produto.produto_instrumento.instrumento_percussao.material }}</li>
+                        <li class="list-group-item"><strong>Altura:</strong> {{
+                            produto.produto_instrumento.instrumento_percussao.altura }}</li>
+                        <li class="list-group-item"><strong>Diâmetro:</strong> {{
+                            produto.produto_instrumento.instrumento_percussao.diametro }}</li>
                         {% endif %}
                     </ul>
                 </div>
@@ -43,13 +53,15 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="quantidade">Quantidade:</label>
-                            <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="form-control">
+                            <input type="number" id="quantidade" name="quantidade" value="1" min="1"
+                                class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success btn-block mt-3">Adicionar ao Carrinho</button>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 {% endblock %}

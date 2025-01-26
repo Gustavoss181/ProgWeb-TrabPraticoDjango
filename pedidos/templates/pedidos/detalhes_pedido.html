@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes do Pedido{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Pedido #{{ pedido.unique_id }}</h1>
+    <p>Data: {{ pedido.data_pedido }}</p>
+    <p>Valor Total: R$ {{ pedido.valor_total }}</p>
+
+    <h2>Itens do Pedido</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Preço Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in itens_com_total %}
+            <tr>
+                <td>{{ item.produto.get_nome }}</td>
+                <td>{{ item.quantidade }}</td>
+                <td>R$ {{ item.preco_unitario }}</td>
+                <td>R$ {{ item.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
