@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from usuarios.models import Usuario
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def cadastro(request):
     if request.method == "GET":
@@ -21,6 +21,10 @@ def cadastro(request):
         return render(request, 'cadastro_sucesso.html')
 
 def autenticar(request):
+    # Se o usuário já estiver logado, desloga ele
+    if request.user.is_authenticated:
+        logout(request)
+
     if request.method == "GET":
         return render(request, 'login.html')
     else:
@@ -29,9 +33,6 @@ def autenticar(request):
         user = authenticate(username=username, password=senha)
         if user:
             login(request, user)
-            return redirect('home')
+            return redirect('/')  # Redireciona para a raiz da aplicação após o login
         else:
             return render(request, 'login.html', {'error': 'Nome de usuário ou senha inválidos.'})
-
-def home(request):
-    return render(request, 'home.html')
