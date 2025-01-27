@@ -23,13 +23,18 @@ O projeto foi modelado com base no seguinte diagrama entidade-relacionamento (ER
     - Instrumentos: Inclui instrumentos de corda, sopro e percussão, cada um com suas especificidades.
     - Pedido: Relaciona usuários a produtos e calcula valores totais.
 - Tela de administração padrão do Django para gerenciar os dados.
+- Tela de Login e Cadastro de usuário
+- Tela principal de exibição dos produtos
+- Tela de detalhes do produto
+- Opção de colocar um ou mais produtos no carrinho
+- Opção de finalização da compra
 
 ## Requisitos Técnicos
 
 - Linguagem: Python 3.8.1
 - Framework: Django 5.1.4
 - Banco de Dados: SQLite
-- Frontend: Utiliza o template padrão do Django (ainda sem estilização adicional).
+- Frontend: HTML, CSS, JavaScript, Bootstrap 5.3.3
 
 ## Como Executar o Projeto
 
@@ -63,10 +68,3 @@ Inicie o servidor de desenvolvimento:
 python manage.py runserver
 ```
 Acesse o sistema no navegador em: http://127.0.0.1:8000/admin
-
-## Próximos Passos
-
-- Criar templates para as páginas de usuário.
-- Implementar estilização com Bootstrap.
-- Adicionar autenticação para usuários.
-- Desenvolver funcionalidades de carrinho de compras.
