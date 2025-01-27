@@ -3,29 +3,25 @@
 {% block title %}Loja de Instrumentos{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% if produtos %}
-            {% for produto in produtos %}
-                <div class="col">
-                    <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden">
-                        <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" class="card-img-top img-fluid"
-                            alt="{{ produto.get_nome }}" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold">{{ produto.get_nome }}</h5>
-                            <p class="card-text text-muted mb-3">Preço: R$ {{ produto.preco }}</p>
-                            <a href="{% url 'produto_detalhe' produto.id %}" class="btn btn-primary mt-auto align-self-start">
-                                Ver mais <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-        <div class="col-12 text-center">
-            <p class="text-muted fs-5">Nenhum produto encontrado para a sua busca.</p>
+<div class="row">
+    {% if produtos %}
+    {% for produto in produtos %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ produto.foto|default:'https://placehold.co/500x300' }}" class="card-img-top img-fluid"
+                alt="{{ produto.get_nome }}" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">{{ produto.get_nome }}</h5>
+                <p class="card-text text-muted mb-3">Preço: R$ {{ produto.preco }}</p>
+                <a href="{% url 'produto_detalhe' produto.id %}" class="btn btn-primary mt-auto align-self-start">
+                    Ver mais <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
         </div>
-        {% endif %}
     </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-muted text-center">Nenhum produto encontrado.</p>
+    {% endif %}
 </div>
 {% endblock %}
